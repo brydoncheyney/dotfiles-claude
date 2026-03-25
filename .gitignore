@@ -11,6 +11,8 @@ session-env/
 
 # Internal state
 *.local.json
+policy-limits.json
+backups/
 
 # Memory (manage per-project instead)
 projects/
