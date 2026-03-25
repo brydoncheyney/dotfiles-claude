@@ -6,10 +6,10 @@
   },
   "permissions": {
     "allow": [
-      "Read(/Users/tbeatty/.claude/voice.md)",
+      "Read(/Users/brydoncheyney/.claude/voice.md)",
       "Bash(jq:*)",
-      "Bash(/Users/tbeatty/.bin/claude/poll-pr:*)",
-      "Bash(/Users/tbeatty/.bin/claude/pr-checks-summary:*)",
+      "Bash(/Users/brydoncheyney/.bin/claude/poll-pr:*)",
+      "Bash(/Users/brydoncheyney/.bin/claude/pr-checks-summary:*)",
       "Bash(gh auth status:*)",
       "Bash(gh status:*)",
       "Bash(gh org list:*)",
@@ -3044,7 +3044,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/tbeatty/.bin/claude/tf-fmt",
+            "command": "/Users/brydoncheyney/.bin/claude/tf-fmt",
             "statusMessage": "Formatting terraform..."
           }
         ]
