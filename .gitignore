@@ -1,0 +1,17 @@
+# Runtime state
+history.jsonl
+cache/
+sessions/
+shell-snapshots/
+file-history/
+downloads/
+plugins/
+plans/
+session-env/
+
+# Internal state
+*.local.json
+
+# Memory (manage per-project instead)
+projects/
+memory/
