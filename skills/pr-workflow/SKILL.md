@@ -13,7 +13,24 @@ Run this automatically whenever a new GitHub PR has just been created in draft m
 
 ## Steps
 
-### 1. Poll until all checks pass
+### 1. Comment on Jira ticket
+
+Extract the Jira issue key from the branch name (e.g. `PRODENG-3707-create-db-user` → `PRODENG-3707`):
+
+```bash
+gh pr view {pr} --repo {owner}/{repo} --json headRefName -q '.headRefName'
+```
+
+Parse the key as the leading `[A-Z]+-[0-9]+` segment. If found, add a comment to the Jira issue using `mcp__claude_ai_Atlassian__addCommentToJiraIssue`:
+
+- `cloudId`: `nerdwallet.atlassian.net`
+- `issueIdOrKey`: the extracted key (e.g. `PRODENG-3707`)
+- `commentBody`: `PR open for review: {pr_url}`
+- `contentFormat`: `markdown`
+
+If no Jira key is found in the branch name, skip this step silently.
+
+### 2. Poll until all checks pass
 
 ```bash
 gh pr checks {pr} --repo {owner}/{repo} --json name,state,description,link
@@ -82,7 +99,7 @@ If `semgrep-cloud-platform/scan` fails, triage it before giving up:
    ```
    Once `completed success`, continue with the rest of the workflow.
 
-### 2. Collect change summary
+### 3. Collect change summary
 
 From the same `gh pr checks` output:
 
@@ -91,7 +108,7 @@ From the same `gh pr checks` output:
 
 Present a table of checks that have actual changes, with links. If everything is no-changes, say so briefly.
 
-### 3. Mark PR ready and post Slack message
+### 4. Mark PR ready and post Slack message
 
 Immediately after presenting the change summary — no confirmation needed, the tool approval prompt is the gate:
 
