@@ -15,10 +15,12 @@ For PR descriptions, include a summary of what the changes do. Do NOT include a 
 ## Commits
 
 Never commit to master/main, always create a branch and open a github PR in draft mode.
+Always use conventional commit conventions.
+Always try to add the cope if possible.
 Always try to add the appropriate jira issue key in the commit message, e.g.
 
 ```
-[PRODENG-1394] Add support for new API endpoint
+feat(rds): [PRODENG-1394] Add support for netw API endpoint
 This adds the new API endpoint for fetching user data
 ```
 
