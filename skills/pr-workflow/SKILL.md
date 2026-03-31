@@ -13,7 +13,7 @@ Run this automatically whenever a new GitHub PR has just been created in draft m
 
 ## Steps
 
-### 1. Comment on Jira ticket
+### 1. Comment on Jira ticket and update PR description
 
 Extract the Jira issue key from the branch name (e.g. `PRODENG-3707-create-db-user` → `PRODENG-3707`):
 
@@ -21,12 +21,22 @@ Extract the Jira issue key from the branch name (e.g. `PRODENG-3707-create-db-us
 gh pr view {pr} --repo {owner}/{repo} --json headRefName -q '.headRefName'
 ```
 
-Parse the key as the leading `[A-Z]+-[0-9]+` segment. If found, add a comment to the Jira issue using `mcp__claude_ai_Atlassian__addCommentToJiraIssue`:
+Parse the key as the leading `[A-Z]+-[0-9]+` segment. If found:
+
+**a) Add a comment to the Jira issue** using `mcp__claude_ai_Atlassian__addCommentToJiraIssue`:
 
 - `cloudId`: `nerdwallet.atlassian.net`
 - `issueIdOrKey`: the extracted key (e.g. `PRODENG-3707`)
 - `commentBody`: `PR open for review: {pr_url}`
 - `contentFormat`: `markdown`
+
+**b) Prepend a Jira link to the PR description** using `gh pr edit`:
+
+```bash
+gh pr edit {pr} --repo {owner}/{repo} --body "Jira: https://nerdwallet.atlassian.net/browse/{jira_key}
+
+$(gh pr view {pr} --repo {owner}/{repo} --json body -q '.body')"
+```
 
 If no Jira key is found in the branch name, skip this step silently.
 
