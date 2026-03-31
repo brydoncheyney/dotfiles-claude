@@ -560,6 +560,7 @@
       "Bash(aws cloudwatch list-dashboards:*)",
       "Bash(aws cloudwatch list-managed-insight-rules:*)",
       "Bash(aws cloudwatch list-metric-streams:*)",
+      "Bash(aws cloudwatch get-metric-statistics:*)",
       "Bash(aws cloudwatch list-metrics:*)",
       "Bash(aws cloudwatch list-tags-for-resource:*)",
       "Bash(aws codebuild batch-get-build-batches:*)",
