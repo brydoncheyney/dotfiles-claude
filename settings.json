@@ -3044,8 +3044,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/brydoncheyney/.bin/claude/tf-fmt",
-            "statusMessage": "Formatting terraform..."
+            "command": "terraform fmt",
+            "statusMessage": "Formatting terraform...",
+            "if": "Edit(*.tf)|Write(*.tf)"
           }
         ]
       }
