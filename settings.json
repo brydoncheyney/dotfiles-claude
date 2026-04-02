@@ -3070,6 +3070,14 @@
   },
   "effortLevel": "low",
   "mcpServers": {
+    "nerdoracle": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["ts-node", "/Users/brydoncheyney/.local/share/nerdoracle/services/mcp/src/index.ts"],
+      "env": {
+        "NERDORACLE_API_URL": "https://y10ihv3lr6.execute-api.us-east-1.amazonaws.com/v1"
+      }
+    },
     "cloudquery": {
       "type": "stdio",
       "command": "/opt/homebrew/bin/uv",
