@@ -3045,7 +3045,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "terraform fmt",
+            "command": "terraform fmt {{file_path}}",
             "statusMessage": "Formatting terraform...",
             "if": "Edit(*.tf)|Write(*.tf)"
           }
