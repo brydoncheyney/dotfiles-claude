@@ -46,7 +46,7 @@ If no Jira key is found in the branch name, skip this step silently.
 gh pr checks {pr} --repo {owner}/{repo} --json name,state,description,link
 ```
 
-Poll every ~30 seconds. Wait until all checks have `state == "SUCCESS"`. If a check fails, handle it per the rules below before stopping.
+Poll every ~30 seconds. Ignore any checks whose `name` starts with `ci/circleci:` — do not wait for them and do not treat their state as blocking. Wait until all other checks have `state == "SUCCESS"`. If a check fails, handle it per the rules below before stopping.
 
 #### Semgrep failures
 
@@ -112,6 +112,8 @@ If `semgrep-cloud-platform/scan` fails, triage it before giving up:
 ### 3. Collect change summary
 
 From the same `gh pr checks` output:
+
+> **PR description style**: Always consider using GitHub markdown admonitions to highlight important context — `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]`. Use them when there is non-obvious background, a gotcha, or something a reviewer should pay particular attention to.
 
 - **Terraform Cloud checks**: `description` field contains the plan summary (e.g. `"Terraform plan: 0 to add, 1 to change, 0 to destroy."`), `link` points to the TFC run.
 - **GitHub Actions plan jobs**: invoke the `gha-plan-review` skill to get the full resource-level breakdown.
