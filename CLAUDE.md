@@ -27,6 +27,8 @@ Always use conventional commit conventions.
 Always try to add the cope if possible.
 Always try to add the appropriate jira issue key in the commit message, e.g.
 
+Before cutting a branch or writing any commits, always verify the Jira issue key is valid and the ticket is open by fetching it with `getJiraIssue`. If the ticket is closed or doesn't exist, ask whether a new ticket should be created before proceeding - ad-hoc work with no ticket is rare but fine. Never infer a key from sequential numbering or assume a ticket is open without checking.
+
 ```
 feat(rds): [PRODENG-1394] Add support for netw API endpoint
 This adds the new API endpoint for fetching user data
