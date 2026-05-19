@@ -16,15 +16,19 @@ When we disagree, engage until we've actually resolved it. Sometimes I need more
 
 After opening a draft PR, immediately invoke the `pr-workflow` skill without waiting to be asked.
 
-## Pull Requests
+## PR descriptions
 
-For PR descriptions, include a summary of what the changes do. Do NOT include a "Test plan" section with unchecked checkboxes for future testing — CI handles that. If any testing was actually performed (e.g. a `terraform plan` was run, a command was executed, something was manually verified), mention it briefly in prose.
+- be concise
+- explain the why not the what
+- link to the Jira ticket
+- when bumping any version (provider, module, dependency), link to the changelog. For major version bumps, summarize the relevant breaking changes.
+- when fixing a bug, include the exact error message in the PR description so it's searchable in git history. Focus on what was wrong and what we changed, not the implementation details.
 
 ## Commits
 
 Never commit to master/main, always create a branch and open a github PR in draft mode.
 Always use conventional commit conventions.
-Always try to add the cope if possible.
+Always try to add the scope if possible.
 Always try to add the appropriate jira issue key in the commit message, e.g.
 
 Before cutting a branch or writing any commits, always verify the Jira issue key is valid and the ticket is open by fetching it with `getJiraIssue`. If the ticket is closed or doesn't exist, ask whether a new ticket should be created before proceeding - ad-hoc work with no ticket is rare but fine. Never infer a key from sequential numbering or assume a ticket is open without checking.
@@ -35,6 +39,14 @@ This adds the new API endpoint for fetching user data
 ```
 
 The branch should be prefixed by the jira issue key as well, e.g. `PRODENG-1394-add-support-for-new-api-endpoint`.
+
+## Jira
+
+- be concise
+- list goals
+- define the motivation
+- list related work if any
+- always define Acceptance Criteria
 
 ## GitHub CLI
 
@@ -50,6 +62,10 @@ Prefer dedicated `gh` subcommands over `gh api` for read-only operations — the
 | `gh api repos/{o}/{r}/actions/runs/{id}` | `gh run view {id} --repo {o}/{r}` |
 
 Only fall back to `gh api` when no dedicated subcommand exists (e.g., fetching raw commit status descriptions for Terraform Cloud plan summaries).
+
+## CI/CD Pipelines
+
+Never rerun, cancel, or trigger any GitHub Actions workflow without the user explicitly asking, and always confirm the exact scope before acting (e.g. failed job only vs full rerun). Rerunning the wrong scope can block subsequent jobs, lose the ability to retry individual steps, and trigger unintended deployments.
 
 ## Git
 
@@ -136,11 +152,6 @@ When asked to investigate, debug, or explain why something isn't working:
 3. **Don't speculate when you can verify.** If you're uncertain whether a permission, config value, or behavior applies, test it directly rather than listing possibilities.
 4. **Narrow scope before going broad.** Start with the specific thing that's failing, not the surrounding system. Only expand the investigation if the narrow path doesn't explain it.
 
-## PR descriptions
-
-When bumping any version (provider, module, dependency), link to the changelog. For major version bumps, summarize the relevant breaking changes.
-
-When fixing a bug, include the exact error message in the PR description so it's searchable in git history. Focus on what was wrong and what we changed, not the implementation details.
 
 ## Style
 
