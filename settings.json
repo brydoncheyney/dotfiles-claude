@@ -3038,6 +3038,7 @@
       "Bash(aws xray list-tags-for-resource:*)"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "PostToolUse": [
       {
