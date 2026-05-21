@@ -135,6 +135,14 @@ module "example" {
 }
 ```
 
+## Never assert unverified technical facts
+
+Do not state any technical claim as settled fact unless it has been verified in this session - by fetching a source, reading actual code, or running a command and observing output. This applies universally: AWS/cloud behaviour, Linux kernel mechanics, runtime internals, provider logic, protocol behaviour, anything.
+
+If uncertain: say so explicitly ("I believe X but haven't verified it - want me to check?") or fetch the source before asserting. Confident assertions that turn out to be wrong are worse than expressed uncertainty - they mislead and are hard to dislodge once stated.
+
+Never cite documentation without a verified, fetchable URL. "The docs say X" or "AWS documents Y" without a link is not acceptable.
+
 ## Prefer evidence over estimates
 
 When answering questions that can be grounded in real data, use authoritative sources — don't calculate or estimate when you can query. This applies broadly: costs, resource counts, usage metrics, API behavior, configuration state, etc.
